@@ -14,26 +14,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/appointments")
-@Tag(name = "Appointments", description = "API para gestionar compromisos de agenda")
+@Tag(name = "Compromissos", description = "API para gerenciar compromissos da agenda")
 public class AppointmentController {
 
   @Autowired
   private AppointmentService appointmentService;
 
   @GetMapping
-  @Operation(summary = "Obtener todos los compromisos", description = "Devuelve una lista de todos los compromisos registrados.")
+  @Operation(summary = "Obter todos os compromissos", description = "Retorna uma lista de todos os compromissos registrados.")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Lista de compromisos obtenida exitosamente")
+      @ApiResponse(responseCode = "200", description = "Lista de compromissos obtida com sucesso")
   })
   public List<Appointment> getAllAppointments() {
     return appointmentService.getAllAppointments();
   }
 
   @GetMapping("/{id}")
-  @Operation(summary = "Obtener un compromiso por ID", description = "Devuelve un compromiso específico basado en su ID.")
+  @Operation(summary = "Obter um compromisso por ID", description = "Retorna um compromisso específico baseado em seu ID.")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Compromiso encontrado"),
-      @ApiResponse(responseCode = "404", description = "Compromiso no encontrado")
+      @ApiResponse(responseCode = "200", description = "Compromisso encontrado"),
+      @ApiResponse(responseCode = "404", description = "Compromisso não encontrado")
   })
   public ResponseEntity<Appointment> getAppointmentById(@PathVariable Long id) {
     return appointmentService.getAppointmentById(id)
@@ -42,19 +42,19 @@ public class AppointmentController {
   }
 
   @PostMapping
-  @Operation(summary = "Crear un nuevo compromiso", description = "Crea un nuevo compromiso en la agenda.")
+  @Operation(summary = "Criar um novo compromisso", description = "Cria um novo compromisso na agenda.")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Compromiso creado exitosamente")
+      @ApiResponse(responseCode = "200", description = "Compromisso criado com sucesso")
   })
   public Appointment createAppointment(@RequestBody Appointment appointment) {
     return appointmentService.createAppointment(appointment);
   }
 
   @PutMapping("/{id}")
-  @Operation(summary = "Actualizar un compromiso", description = "Actualiza un compromiso existente basado en su ID.")
+  @Operation(summary = "Atualizar um compromisso", description = "Atualiza um compromisso existente baseado em seu ID.")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", description = "Compromiso actualizado exitosamente"),
-      @ApiResponse(responseCode = "404", description = "Compromiso no encontrado")
+      @ApiResponse(responseCode = "200", description = "Compromisso atualizado com sucesso"),
+      @ApiResponse(responseCode = "404", description = "Compromisso não encontrado")
   })
   public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
     try {
@@ -66,10 +66,10 @@ public class AppointmentController {
   }
 
   @DeleteMapping("/{id}")
-  @Operation(summary = "Eliminar un compromiso", description = "Elimina un compromiso basado en su ID.")
+  @Operation(summary = "Excluir um compromisso", description = "Exclui um compromisso baseado em seu ID.")
   @ApiResponses(value = {
-      @ApiResponse(responseCode = "204", description = "Compromiso eliminado exitosamente"),
-      @ApiResponse(responseCode = "404", description = "Compromiso no encontrado")
+      @ApiResponse(responseCode = "204", description = "Compromisso excluído com sucesso"),
+      @ApiResponse(responseCode = "404", description = "Compromisso não encontrado")
   })
   public ResponseEntity<Void> deleteAppointment(@PathVariable Long id) {
     try {
